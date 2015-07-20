@@ -9,7 +9,7 @@ Since kanji characters aren't phonetic, some Japanese texts show the pronunciati
 ![](https://github.com/helephant/Gem/blob/master/docs/yotsuba.jpg)
 
 The Gem library makes it easier to work with furigana text, particularly on web pages. 
-* Display the HTML required to view furigana in the browser using the HTML ruby syntax
+* Display the HTML required to view furigana in the browser using the [HTML ruby syntax](http://www.w3.org/International/articles/ruby/)
 * Extract phonetic hiragana text from Japanese text written in the gem syntax
 * Extract the plain text without any furigana from Japanese text written in the gem syntax 
 
@@ -27,12 +27,17 @@ Will create text that looks like this:
 
 ## Using the library
 
-Create a new furigana object. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
+Gem is a [nuget package](https://www.nuget.org/packages/Gem/), so you can install it into your project using the following command:
+```
+Install-Package Gem
+```
+
+Then you can create furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
 ```
 var furigana = new Furigana("新[あたら]しい");
 ```
 
-Then generate:
+Then it's possible to generate:
 * The reading - the Japanese text, with any gem information included in the Gem syntax (ie. 新[あたら]しい)
 * The expression - the Japanese text without any furigana gems (ie. 新しい)
 * Hiragana - the text with any Kanji converted to the phonetic hiragana (ie. あたらしい)
