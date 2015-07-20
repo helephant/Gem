@@ -22,7 +22,7 @@ For example:
  ```
 
 Will create text that looks like this:
-()
+![](https://github.com/helephant/Gem/blob/master/docs/atarashi.png)
 
 ## Using the library
 
