@@ -6,7 +6,7 @@ Japanese writing is made up of two phonetic scripts: hiragana for Japanese words
 
 Since kanji characters aren't phonetic, some Japanese texts show the pronunciation above the kanji characters. This is called furigana. It is often used for text aimed at children, but is very helpful for anyone learning the language. The furigana helpers are called gems. 
 
-!(https://github.com/helephant/Gem/blob/master/docs/yotsuba.jpg)
+![](https://github.com/helephant/Gem/blob/master/docs/yotsuba.jpg)
 
 The Gem library makes it easier to work with furigana text, particularly on web pages. 
 * Display the HTML required to view furigana in the browser using the HTML ruby syntax
