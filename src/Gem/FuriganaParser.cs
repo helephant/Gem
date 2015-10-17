@@ -18,21 +18,22 @@ namespace Gem
             var e = _furigana.GetEnumerator();
             var currentBase = string.Empty;
             var currentFurigana = string.Empty;
+            var parsingBaseSection = true;
+
             while (e.MoveNext())
             {
-
                 if (e.Current == '[')
                 {
-                    if (e.MoveNext())
-                        currentFurigana += e.Current;
+                    parsingBaseSection = false;
                 }
-                else if (e.Current == ']')
+                else if (e.Current == ']' || (parsingBaseSection && e.Current == ' '))
                 {
                     segments.Add(new FuriganaSegment(currentBase, currentFurigana));
                     currentBase = string.Empty;
                     currentFurigana = string.Empty;
+                    parsingBaseSection = true;
                 }
-                else if (currentFurigana != string.Empty)
+                else if (!parsingBaseSection)
                     currentFurigana += e.Current;
                 else
                     currentBase += e.Current;

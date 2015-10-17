@@ -10,7 +10,7 @@ namespace Gem
         public FuriganaSegment(string baseText, string furigana)
         {
             _baseText = baseText;
-            if (!string.IsNullOrEmpty(furigana))
+            if (!string.IsNullOrEmpty(furigana.Trim()))
                 _furigana = furigana;
         }
 
@@ -35,7 +35,7 @@ namespace Gem
             {
                 if (HasFurigana)
                     return string.Format("{0}[{1}]", BaseText, Furigana);
-                return BaseText;
+                return BaseText + " ";
             }
         }
 

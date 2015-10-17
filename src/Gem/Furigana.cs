@@ -45,7 +45,7 @@ namespace Gem
                 {
                     reading += segment.Reading;
                 }
-                return reading;
+                return reading.Trim();
             }
         }
 

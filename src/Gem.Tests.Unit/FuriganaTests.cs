@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics;
+using NUnit.Framework;
 
 namespace Gem.Tests.Unit
 {
@@ -39,6 +40,33 @@ namespace Gem.Tests.Unit
             var furigana = new Furigana(reading);
 
             Assert.That(furigana.Reading, Is.EqualTo(reading));
+        }
+
+        [Test]
+        public void SpaceCanBeDelimiterBetweenFuriganaSegments()
+        {
+            var reading = "あの 人[ひと]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo("あの 人[ひと]"));
+        }
+
+        [Test]
+        public void IgnoreEmptyFuriganaSection()
+        {
+            var reading = "あの[]人[ひと]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo("あの 人[ひと]"));
+        }
+
+        [Test]
+        public void IgnoreFuriganaWithOnlyWhitespace()
+        {
+            var reading = "あの[ ]人[ひと]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo("あの 人[ひと]"));
         }
 
         [Test]
