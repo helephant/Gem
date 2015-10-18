@@ -25,6 +25,17 @@ Will create text that looks like this:
 
 ![](https://github.com/helephant/Gem/blob/master/docs/atarashi.png)
 
+If you have a furigana section with a mix of hiragana and kanji (like あの人), you can add a space to mark the where to begin the text that furigana should appear above. 
+
+For example:
+```
+ あの 人[ひと]
+ ```
+
+ Will create text that looks like this:
+
+![](https://github.com/helephant/Gem/blob/master/docs/anohito.png)
+ 
 ## Using the library
 
 Gem is a [nuget package](https://www.nuget.org/packages/Gem/), so you can install it into your project using the following command:
