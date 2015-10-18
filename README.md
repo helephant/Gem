@@ -34,7 +34,7 @@ For example:
 
  Will create text that looks like this:
 
-![](https://github.com/helephant/Gem/blob/master/docs/anohito.png)
+![](https://github.com/helephant/Gem/blob/master/docs/anohito-example.png)
  
 ## Using the library
 
