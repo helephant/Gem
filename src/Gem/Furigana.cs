@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Gem
 {
@@ -8,7 +9,9 @@ namespace Gem
 
         public Furigana(string reading)
         {
-            _segments = new FuriganaParser(reading).Parse();
+            _segments = reading != null ? 
+                new FuriganaParser(reading).Parse() : 
+                Enumerable.Empty<FuriganaSegment>();
         }
 
         public string Expression

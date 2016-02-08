@@ -96,5 +96,28 @@ namespace Gem.Tests.Unit
 
             Assert.That(formatter.ReadingHtml, Is.EqualTo(result));
         }
+
+        [Test]
+        public void EmptyReading()
+        {
+            var reading = "";
+            var formatter = new Furigana(reading);
+
+            Assert.That(formatter.Reading, Is.EqualTo(""));
+            Assert.That(formatter.Expression, Is.EqualTo(""));
+            Assert.That(formatter.Hiragana, Is.EqualTo(""));
+            Assert.That(formatter.ReadingHtml, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void NullReading()
+        {
+            var formatter = new Furigana(null);
+
+            Assert.That(formatter.Reading, Is.EqualTo(""));
+            Assert.That(formatter.Expression, Is.EqualTo(""));
+            Assert.That(formatter.Hiragana, Is.EqualTo(""));
+            Assert.That(formatter.ReadingHtml, Is.EqualTo(""));
+        }
     }
 }
