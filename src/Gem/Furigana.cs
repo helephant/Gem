@@ -1,68 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using Gem.Segments;
 
 namespace Gem
 {
     public class Furigana
     {
-        private readonly IEnumerable<FuriganaSegment> _segments;
+        private readonly IEnumerable<ISegment> _segments;
 
         public Furigana(string reading)
         {
             _segments = reading != null ? 
                 new FuriganaParser(reading).Parse() : 
-                Enumerable.Empty<FuriganaSegment>();
+                Enumerable.Empty<ISegment>();
         }
 
-        public string Expression
-        {
-            get
-            {
-                var kanji = string.Empty;
-                foreach (var segment in _segments)
-                    kanji += segment.BaseText;
-                return kanji;
-            }
-        }
+        public string Expression => Concat(x => x.Expression);
+        public string Hiragana => Concat(x => x.Hiragana);
+        public string Reading => Concat(x => x.Reading);
+        public string ReadingHtml => Concat(x => x.ReadingHtml);
 
-        public string Hiragana
+        private string Concat(Func<ISegment, string> f)
         {
-            get
-            {
-                var hiragana = string.Empty;
-                foreach (var segment in _segments)
-                {
-                    hiragana += segment.HasFurigana ?
-                                    segment.Furigana : segment.BaseText;
-                }
-                return hiragana;
-            }
-        }
-
-        public string Reading
-        {
-            get
-            {
-                string reading = string.Empty;
-                foreach (var segment in _segments)
-                {
-                    reading += segment.Reading;
-                }
-                return reading.Trim();
-            }
-        }
-
-        public string ReadingHtml
-        {
-            get
-            {
-                var html = string.Empty;
-                foreach (var segment in _segments)
-                {
-                    html += segment.ReadingHtml;
-                }
-                return html;
-            }
+            // probably premature optimization, to be honest
+            var stringBuilder = new StringBuilder();
+            foreach (var text in _segments.Select(f))
+                stringBuilder.Append(text);
+            return stringBuilder.ToString();
         }
     }
 }

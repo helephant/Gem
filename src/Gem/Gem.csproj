@@ -41,8 +41,12 @@
   <ItemGroup>
     <Compile Include="Furigana.cs" />
     <Compile Include="FuriganaParser.cs" />
-    <Compile Include="FuriganaSegment.cs" />
+    <Compile Include="Segments\FuriganaSegment.cs" />
+    <Compile Include="Segments\HonorificSegment.cs" />
+    <Compile Include="Segments\ISegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Segments\SpaceSegment.cs" />
+    <Compile Include="Segments\UndecoratedSegment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gem.nuspec" />

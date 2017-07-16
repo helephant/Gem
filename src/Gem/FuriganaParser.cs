@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gem.Segments;
 
 namespace Gem
 {
@@ -11,38 +12,71 @@ namespace Gem
             _furigana = furigana;
         }
 
-        public IEnumerable<FuriganaSegment> Parse()
+        public IEnumerable<ISegment> Parse()
         {
-            var segments = new List<FuriganaSegment>();
+            var segments = new List<ISegment>();
 
-            var e = _furigana.GetEnumerator();
+            var currentIndex = 0;
+            var characters = _furigana.ToCharArray();
+
             var currentBase = string.Empty;
             var currentFurigana = string.Empty;
             var parsingBaseSection = true;
 
-            while (e.MoveNext())
+            while (currentIndex < characters.Length)
             {
-                if (e.Current == '[')
+                if (characters[currentIndex] == '[')
                 {
                     parsingBaseSection = false;
                 }
-                else if (e.Current == ']' || (parsingBaseSection && e.Current == ' '))
+                else if (characters[currentIndex] == ']' || 
+                    (characters[currentIndex] == ' ') || characters[currentIndex] == 'お')
                 {
-                    segments.Add(new FuriganaSegment(currentBase, currentFurigana));
+                    if(!string.IsNullOrEmpty(currentBase))
+                        segments.Add(GetSegment(currentBase, currentFurigana));
                     currentBase = string.Empty;
                     currentFurigana = string.Empty;
                     parsingBaseSection = true;
+
+                    if (characters[currentIndex] == 'お')
+                        segments.Add(new HonorificSegment());
+                    else if (characters[currentIndex] == ' ')
+                    {
+                        segments.Add(new SpaceSegment());
+                        while (!IsLastSpaceInSegment(characters, currentIndex))
+                            currentIndex++;
+                    }
+                    
                 }
                 else if (!parsingBaseSection)
-                    currentFurigana += e.Current;
+                    currentFurigana += characters[currentIndex];
                 else
-                    currentBase += e.Current;
+                    currentBase += characters[currentIndex];
+
+                currentIndex++;
             }
 
             if (!string.IsNullOrEmpty(currentBase))
-                segments.Add(new FuriganaSegment(currentBase, currentFurigana));
+                segments.Add(GetSegment(currentBase, currentFurigana));
+
+            
 
             return segments;
+        }
+
+        private bool IsLastSpaceInSegment(char[] characters, int currentIndex)
+        {
+            return currentIndex >= (characters.Length - 1) || 
+                (characters[currentIndex] == ' '  && characters[currentIndex + 1] != ' ');
+        }
+
+        private ISegment GetSegment(string currentBase, string currentFurigana)
+        {
+            if(!string.IsNullOrEmpty(currentBase) && string.IsNullOrEmpty(currentBase.Trim()))
+                return new SpaceSegment();
+            if (string.IsNullOrEmpty(currentFurigana))
+                return new UndecoratedSegment(currentBase);
+            return new FuriganaSegment(currentBase, currentFurigana);
         }
     }
 }
