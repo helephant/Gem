@@ -1,0 +1,1 @@
+./nuget pack ../src/gem/gem.csproj -OutputDirectory Packages -Symbols

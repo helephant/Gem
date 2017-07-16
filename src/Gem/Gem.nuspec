@@ -2,15 +2,26 @@
 <package >
   <metadata>
     <id>$id$</id>
+    <title>Gem furigana library</title>
+    <summary>Gem makes it easy to work with Japanese text which includes furigana. It uses a simple format to encode the furigana (for example 新[あたら]しい) and then makes it easy to generate Ruby HTML, extract phonetic hiragana or the show the complete expression without any furigana.</summary>
+    <description>
+      The Gem library makes it easier to work with furigana text, particularly on web pages.
+      - Display the HTML required to view furigana in the browser using the HTML ruby syntax
+      - Extract phonetic hiragana text from Japanese text written in the gem syntax
+      - Extract the plain text without any furigana from Japanese text written in the gem syntax
+
+      The Gem library uses a simple syntax to encode furigana information in Japanese text. The text to be displayed in the furigana gem is simply included in square brackets following the character or group of characters it relates to. For example: 新[あたら]しい.
+    </description>
     <version>$version$</version>
-    <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/helephant/Gem</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>First edition of the package.</releaseNotes>
+    
+    <releaseNotes>
+      16 July 2017 - Updated to split the gem when an honorific 'o' is encountered. Also handles spaces more consistently. Respects spaces, but collapses multiple ones.
+    </releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>japanese kanji furigana hirigana gems ruby html-ruby ruby-gems</tags>
   </metadata>

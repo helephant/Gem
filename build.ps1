@@ -1,1 +1,3 @@
-.\build\build-package.ps1
+cd build
+.\build-package.ps1
+cd ..
