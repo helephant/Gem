@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gem", "src\Gem\Gem.csproj", "{F658E44A-91BD-4E6B-8796-D5623DBDC475}"
 EndProject
@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C68B2199
 		build\build-package.ps1 = build\build-package.ps1
 		build.ps1 = build.ps1
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{226CED8F-050A-460F-91D7-9DEDC8F08DC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB0EDEF2-4B30-482A-ACDA-2C68524706A1} = {226CED8F-050A-460F-91D7-9DEDC8F08DC3}
 	EndGlobalSection
 EndGlobal

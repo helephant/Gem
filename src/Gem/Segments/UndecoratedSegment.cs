@@ -12,8 +12,8 @@ namespace Gem.Segments
         }
 
         public string Expression => _baseText;
-        public string Hiragana => Expression;
-        public virtual string Reading => Expression;
+        public string Hiragana => _baseText;
+        public virtual string Reading => _baseText;
         public string ReadingHtml => _baseText;
     }
 }
