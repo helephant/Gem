@@ -55,6 +55,78 @@ namespace Gem.Tests.Unit
         }
 
         [Test]
+        public void NumberShouldNotBeIncludedInGem()
+        {
+            var reading = "9時[じ]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo(reading));
+            Assert.That(furigana.Hiragana, Is.EqualTo("9じ"));
+            Assert.That(furigana.Expression, Is.EqualTo("9時"));
+            Assert.That(furigana.ReadingHtml, Is.EqualTo("9<ruby><rb>時</rb><rt>じ</rt></ruby>"));
+        }
+
+        [Test]
+        public void PunctuationShouldNotBeIncludedInGem()
+        {
+            var reading = "大[おお]きい。犬[いぬ]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo(reading));
+            Assert.That(furigana.Hiragana, Is.EqualTo("おおきい。いぬ"));
+            Assert.That(furigana.Expression, Is.EqualTo("大きい。犬"));
+            Assert.That(furigana.ReadingHtml, Is.EqualTo("<ruby><rb>大</rb><rt>おお</rt></ruby>きい。<ruby><rb>犬</rb><rt>いぬ</rt></ruby>"));
+        }
+
+        [Test]
+        public void RomajiShouldNotBeIncludedInGem()
+        {
+            var reading = "Big犬[いぬ]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo(reading));
+            Assert.That(furigana.Hiragana, Is.EqualTo("Bigいぬ"));
+            Assert.That(furigana.Expression, Is.EqualTo("Big犬"));
+            Assert.That(furigana.ReadingHtml, Is.EqualTo("Big<ruby><rb>犬</rb><rt>いぬ</rt></ruby>"));
+        }
+
+        [Test]
+        public void KatakanaShouldNotBeIncludedInGem()
+        {
+            var reading = "ローマ字[じ]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo(reading));
+            Assert.That(furigana.Hiragana, Is.EqualTo("ローマじ"));
+            Assert.That(furigana.Expression, Is.EqualTo("ローマ字"));
+            Assert.That(furigana.ReadingHtml, Is.EqualTo("ローマ<ruby><rb>字</rb><rt>じ</rt></ruby>"));
+        }
+
+        [Test]
+        public void HiraganaShouldNotBeIncludedInGem()
+        {
+            var reading = "売[う]り場[ば]";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo(reading));
+            Assert.That(furigana.Hiragana, Is.EqualTo("うりば"));
+            Assert.That(furigana.Expression, Is.EqualTo("売り場"));
+            Assert.That(furigana.ReadingHtml, Is.EqualTo("<ruby><rb>売</rb><rt>う</rt></ruby>り<ruby><rb>場</rb><rt>ば</rt></ruby>"));
+        }
+
+        [Test]
+        public void OInFuriganaIsNotTreatedAsHonorific()
+        {
+            var reading = "起[お]きます";
+            var furigana = new Furigana(reading);
+
+            Assert.That(furigana.Reading, Is.EqualTo(reading));
+            Assert.That(furigana.Hiragana, Is.EqualTo("おきます"));
+            Assert.That(furigana.Expression, Is.EqualTo("起きます"));
+            Assert.That(furigana.ReadingHtml, Is.EqualTo("<ruby><rb>起</rb><rt>お</rt></ruby>きます"));
+        }
+
+        [Test]
         public void HonorificInMiddleOfPhrase()
         {
             var reading = "東京[とうきょう] お急行[きゅうこう]";
@@ -104,7 +176,7 @@ namespace Gem.Tests.Unit
         [Test]
         public void IgnoreFuriganaWithOnlyWhitespace()
         {
-            var reading = "あの[ ]人[ひと]";
+            var reading = "あの[ ] 人[ひと]";
             var furigana = new Furigana(reading);
 
             Assert.That(furigana.Reading, Is.EqualTo("あの 人[ひと]"));
@@ -123,12 +195,12 @@ namespace Gem.Tests.Unit
         }
 
         [Test]
-        public void IgnoreMultipleSpacesBetweenSegments()
+        public void PreserveMultipleSpacesBetweenSegments()
         {
             var reading = "東京[とうきょう]    急行[きゅうこう]";
             var furigana = new Furigana(reading);
 
-            Assert.That(furigana.Reading, Is.EqualTo("東京[とうきょう] 急行[きゅうこう]"));
+            Assert.That(furigana.Reading, Is.EqualTo("東京[とうきょう]    急行[きゅうこう]"));
         }
 
         [Test]

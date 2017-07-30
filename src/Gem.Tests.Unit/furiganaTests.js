@@ -1,4 +1,4 @@
-﻿/// <reference path="../Gem/Javascript/furigana.js" />
+﻿/// <reference path="../Gem/Javascript/gem.furigana.js" />
 
 QUnit.module("Gem.Tests.Javascript.FuriganaTests");
 
@@ -41,6 +41,76 @@ QUnit.test("honorific should not be included in gem", function (assert) {
     assert.equal(furigana.ReadingHtml, "お<ruby><rb>茶</rb><rt>ちゃ</rt></ruby>");
 });
 
+QUnit.test("number should not be included in gem", function (assert) {
+    var reading = "9時[じ]";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "9じ");
+    assert.equal(furigana.Expression, "9時");
+    assert.equal(furigana.ReadingHtml, "9<ruby><rb>時</rb><rt>じ</rt></ruby>");
+});
+
+QUnit.test("punctuation should not be included in gem", function (assert) {
+    var reading = "大[おお]きい。犬[いぬ]";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "おおきい。いぬ");
+    assert.equal(furigana.Expression, "大きい。犬");
+    assert.equal(furigana.ReadingHtml, "<ruby><rb>大</rb><rt>おお</rt></ruby>きい。<ruby><rb>犬</rb><rt>いぬ</rt></ruby>");
+});
+
+QUnit.test("romaji should not be included in gem", function (assert) {
+    var reading = "Big犬[いぬ]";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "Bigいぬ");
+    assert.equal(furigana.Expression, "Big犬");
+    assert.equal(furigana.ReadingHtml, "Big<ruby><rb>犬</rb><rt>いぬ</rt></ruby>");
+});
+
+QUnit.test("katana should not be included in gem", function (assert) {
+    var reading = "ローマ字[じ]";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "ローマじ");
+    assert.equal(furigana.Expression, "ローマ字");
+    assert.equal(furigana.ReadingHtml, "ローマ<ruby><rb>字</rb><rt>じ</rt></ruby>");
+});
+
+QUnit.test("katana should not be included in gem", function (assert) {
+    var reading = "ローマ字[じ]";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "ローマじ");
+    assert.equal(furigana.Expression, "ローマ字");
+    assert.equal(furigana.ReadingHtml, "ローマ<ruby><rb>字</rb><rt>じ</rt></ruby>");
+});
+
+QUnit.test("hiragana should not be included in gem", function (assert) {
+    var reading = "売[う]り場[ば]";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "うりば");
+    assert.equal(furigana.Expression, "売り場");
+    assert.equal(furigana.ReadingHtml, "<ruby><rb>売</rb><rt>う</rt></ruby>り<ruby><rb>場</rb><rt>ば</rt></ruby>");
+});
+
+QUnit.test("お in furigana is not treated as honorific", function (assert) {
+    var reading = "起[お]きます";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "おきます");
+    assert.equal(furigana.Expression, "起きます");
+    assert.equal(furigana.ReadingHtml, "<ruby><rb>起</rb><rt>お</rt></ruby>きます");
+});
+
 QUnit.test("honorific in middle of a phrase", function (assert) {
     var reading = "東京[とうきょう] お急行[きゅうこう]";
     var furigana = new Furigana(reading);
@@ -79,11 +149,11 @@ QUnit.test("preserve a space between segments", function (assert) {
     assert.equal(furigana.ReadingHtml, "<ruby><rb>東京</rb><rt>とうきょう</rt></ruby> <ruby><rb>急行</rb><rt>きゅうこう</rt></ruby>");
 });
 
-QUnit.test("ignore multiple spaces between segments", function (assert) {
+QUnit.test("preserve multiple spaces between segments", function (assert) {
     var reading = "東京[とうきょう]    急行[きゅうこう]";
     var furigana = new Furigana(reading);
 
-    assert.equal(furigana.Reading, "東京[とうきょう] 急行[きゅうこう]");
+    assert.equal(furigana.Reading, "東京[とうきょう]    急行[きゅうこう]");
 });
 
 QUnit.test("last character in reading is space", function (assert) {

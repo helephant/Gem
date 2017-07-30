@@ -64,29 +64,16 @@ function ParseFurigana(reading) {
     
     while (characters.length > 0) {
         var current = characters.shift();
-        
-        // need to preserve spaces if parsing HTML tags
-        if (current === '<')
-            parsingHtml = true;
-        else if (current === '>')
-            parsingHtml = false;
 
         if (current === '[') {
             parsingBaseSection = false;
-        } else if (current === ']' || (parsingBaseSection && current === ' ' && !parsingHtml) || current == 'お') {
-            if(currentBase && currentBase.trim() !== "")
-                segments.push(getSegment(currentBase, currentFurigana));
-            currentBase = "";
-            currentFurigana = "";
-            parsingBaseSection = true;
-
-            if (current === 'お')
-                segments.push(new UndecoratedSegment('お'));
-            else if (current === ' ') {
-                segments.push(new UndecoratedSegment(" "));
-                while (!isLastSpaceInSegment(characters))
-                    characters.shift();
-            }
+        }
+        else if (current === ']') {
+            nextSegment();
+        }
+        else if (isLastCharacterInBlock(current, characters) && parsingBaseSection) {
+            currentBase += current;
+            nextSegment();
         }
         else if (!parsingBaseSection)
             currentFurigana += current;
@@ -94,8 +81,16 @@ function ParseFurigana(reading) {
             currentBase += current;
     }
 
-    if (currentBase && currentBase.trim() !== "")
-        segments.push(getSegment(currentBase, currentFurigana));
+    nextSegment();
+
+    function nextSegment() {
+        if (currentBase)
+            segments.push(getSegment(currentBase, currentFurigana));
+        currentBase = "";
+        currentFurigana = "";
+        parsingBaseSection = true;
+        parsingHtml = false;
+    }
 
     function getSegment(baseText, furigana) {
         if (!furigana || furigana.trim().length === 0)
@@ -103,8 +98,13 @@ function ParseFurigana(reading) {
         return new FuriganaSegment(baseText, furigana);
     }
 
-    function isLastSpaceInSegment(segments) {
-        return segments.length === 0 || segments[0] !== ' ';
+    function isLastCharacterInBlock(current, characters) {
+        return !characters.length ||
+            (isKanji(current) !== isKanji(characters[0]) && characters[0] !== '[');
+    }
+
+    function isKanji(character) {
+        return character && character.charCodeAt(0) >= 0x4e00 && character.charCodeAt(0) <= 0x9faf;
     }
 
     return segments;

@@ -6,6 +6,10 @@ namespace Gem
     internal class FuriganaParser
     {
         private readonly string _furigana;
+        private string _currentBase;
+        private string _currentFurigana;
+        private bool _parsingBaseSection;
+        private List<ISegment> _segments;
 
         public FuriganaParser(string furigana)
         {
@@ -14,69 +18,66 @@ namespace Gem
 
         public IEnumerable<ISegment> Parse()
         {
-            var segments = new List<ISegment>();
+            _segments = new List<ISegment>();
 
             var currentIndex = 0;
             var characters = _furigana.ToCharArray();
-
-            var currentBase = string.Empty;
-            var currentFurigana = string.Empty;
-            var parsingBaseSection = true;
+            NextSegment();
 
             while (currentIndex < characters.Length)
             {
                 if (characters[currentIndex] == '[')
                 {
-                    parsingBaseSection = false;
+                    _parsingBaseSection = false;
                 }
-                else if (characters[currentIndex] == ']' || 
-                    (characters[currentIndex] == ' ') || characters[currentIndex] == 'お')
+                else if (characters[currentIndex] == ']')
                 {
-                    if(!string.IsNullOrEmpty(currentBase))
-                        segments.Add(GetSegment(currentBase, currentFurigana));
-                    currentBase = string.Empty;
-                    currentFurigana = string.Empty;
-                    parsingBaseSection = true;
-
-                    if (characters[currentIndex] == 'お')
-                        segments.Add(new HonorificSegment());
-                    else if (characters[currentIndex] == ' ')
-                    {
-                        segments.Add(new SpaceSegment());
-                        while (!IsLastSpaceInSegment(characters, currentIndex))
-                            currentIndex++;
-                    }
-                    
+                    NextSegment();
                 }
-                else if (!parsingBaseSection)
-                    currentFurigana += characters[currentIndex];
+                else if (IsLastCharacterInBlock(characters, currentIndex) && _parsingBaseSection)
+                {
+                    _currentBase += characters[currentIndex];
+                    NextSegment();
+                }
+                else if (!_parsingBaseSection)
+                    _currentFurigana += characters[currentIndex];
                 else
-                    currentBase += characters[currentIndex];
+                    _currentBase += characters[currentIndex];
 
                 currentIndex++;
             }
 
-            if (!string.IsNullOrEmpty(currentBase))
-                segments.Add(GetSegment(currentBase, currentFurigana));
+            NextSegment();
 
-            
-
-            return segments;
+            return _segments;
         }
 
-        private bool IsLastSpaceInSegment(char[] characters, int currentIndex)
+        private void NextSegment()
+        {
+            if (!string.IsNullOrEmpty(_currentBase))
+                _segments.Add(GetSegment(_currentBase, _currentFurigana));
+            _currentBase = string.Empty;
+            _currentFurigana = string.Empty;
+            _parsingBaseSection = true;
+        }
+
+        private bool IsLastCharacterInBlock(char[] characters, int currentIndex)
         {
             return currentIndex >= (characters.Length - 1) || 
-                (characters[currentIndex] == ' '  && characters[currentIndex + 1] != ' ');
+                (IsKanji(characters[currentIndex]) != IsKanji(characters[currentIndex + 1]) && characters[currentIndex + 1] != '[');
+        }
+
+        private bool IsKanji(char character)
+        {
+            return character >= 0x4e00 && character <= 0x9faf;
         }
 
         private ISegment GetSegment(string currentBase, string currentFurigana)
         {
-            if(!string.IsNullOrEmpty(currentBase) && string.IsNullOrEmpty(currentBase.Trim()))
-                return new SpaceSegment();
-            if (string.IsNullOrEmpty(currentFurigana))
+            if (string.IsNullOrEmpty(currentFurigana?.Trim()))
                 return new UndecoratedSegment(currentBase);
             return new FuriganaSegment(currentBase, currentFurigana);
         }
+
     }
 }
