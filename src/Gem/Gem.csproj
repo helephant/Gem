@@ -1,10 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Gem</PackageId>
+	    <Title>Gem furigana library</Title>
+		<description>
+		  The Gem library makes it easier to work with furigana text, particularly on web pages.
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup>
-	  <VersionPrefix>1.0.0.*</VersionPrefix>
-</PropertyGroup>
+		  Gem uses a simple syntax to encode furigana information in Japanese text. The text to be displayed in the furigana gem is simply included in square brackets following the character or group of characters it relates to. For example: 新[あたら]しい.
 
+		  Once you create a Gem, it is very easy to:
+		  - Display the HTML required to view furigana in the browser using the HTML ruby syntax
+		  - Extract the plain text without any furigana from Japanese text written in the gem syntax
+		  - Extract phonetic hiragana text from Japanese text written in the gem syntax
+
+		  The library includes a .NET and javascript implementation of the library.
+		</description>
+		<authors>Helen Emerson</authors>
+		<owners>Helen Emerson</owners>
+		<PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/helephant/Gem</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/helephant/Gem.git</RepositoryUrl>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>
+		  04 August 2017 - Made the gem.furigana.js file install into /script directory only.
+		  30 July 2017 - improved the logic that parsers furigana to make sure furigana appears only over kanji characters.
+		  16 July 2017 - added a javascript version of the library.
+		  16 July 2017 - Updated to split the gem when an honorific 'o' is encountered. Also handles spaces more consistently. Respects spaces, but collapses multiple ones.
+		  03 June 2018 - Create a .NET standard version of the library. 
+		</PackageReleaseNotes>
+		<PackageTags>japanese kanji furigana hirigana gems ruby html-ruby ruby-gems c# javascript</PackageTags>
+	</PropertyGroup>
 </Project>
