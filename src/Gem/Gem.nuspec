@@ -6,11 +6,15 @@
     <summary>Gem makes it easy to work with Japanese text which includes furigana. It uses a simple format to encode the furigana (for example 新[あたら]しい) and then makes it easy to generate Ruby HTML, extract phonetic hiragana or the show the complete expression without any furigana.</summary>
     <description>
       The Gem library makes it easier to work with furigana text, particularly on web pages.
-      - Display the HTML required to view furigana in the browser using the HTML ruby syntax
-      - Extract phonetic hiragana text from Japanese text written in the gem syntax
-      - Extract the plain text without any furigana from Japanese text written in the gem syntax
 
-      The Gem library uses a simple syntax to encode furigana information in Japanese text. The text to be displayed in the furigana gem is simply included in square brackets following the character or group of characters it relates to. For example: 新[あたら]しい.
+      Gem uses a simple syntax to encode furigana information in Japanese text. The text to be displayed in the furigana gem is simply included in square brackets following the character or group of characters it relates to. For example: 新[あたら]しい.
+
+      Once you create a Gem, it is very easy to:
+      - Display the HTML required to view furigana in the browser using the HTML ruby syntax
+      - Extract the plain text without any furigana from Japanese text written in the gem syntax
+      - Extract phonetic hiragana text from Japanese text written in the gem syntax
+
+      The library includes a .NET and javascript implementation of the library.
     </description>
     <version>$version$</version>
     <authors>$author$</authors>
