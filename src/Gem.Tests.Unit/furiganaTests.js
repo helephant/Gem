@@ -1,4 +1,4 @@
-﻿/// <reference path="../Gem/Javascript/gem.furigana.js" />
+﻿/// <reference path="../Gem/Scripts/gem.furigana.js" />
 
 QUnit.module("Gem.Tests.Javascript.FuriganaTests");
 
@@ -39,6 +39,16 @@ QUnit.test("honorific should not be included in gem", function (assert) {
     assert.equal(furigana.Hiragana, "おちゃ");
     assert.equal(furigana.Expression, "お茶");
     assert.equal(furigana.ReadingHtml, "お<ruby><rb>茶</rb><rt>ちゃ</rt></ruby>");
+});
+
+QUnit.test("honorific should not be included in gem2", function (assert) {
+    var reading = "起[お]きます";
+    var furigana = new Furigana(reading);
+
+    assert.equal(furigana.Reading, reading);
+    assert.equal(furigana.Hiragana, "おきます");
+    assert.equal(furigana.Expression, "起きます");
+    assert.equal(furigana.ReadingHtml, "<ruby><rb>起</rb><rt>お</rt></ruby>きます");
 });
 
 QUnit.test("number should not be included in gem", function (assert) {
