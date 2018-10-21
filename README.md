@@ -1,6 +1,6 @@
 ﻿# Gem
 
-Gem is little .NET library for working with Japanese furigana.
+Gem is little .NET and javascript library for working with Japanese furigana.
 
 Japanese writing is made up of two phonetic scripts: hiragana for Japanese words and katakana for loan words. There is also a logographic script called kanji, where a single character represents an idea or a word. All three of these scripts are used in Japanese text.
 
