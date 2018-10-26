@@ -1,10 +1,10 @@
 {
   "name": "gem-furigana",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "description": "Gem makes it simple to work with Japanese furigana on webpages. It uses a simple syntax to encode furigana information in Japanese text, which it can display as plain kanji, hiragana or furigana using the HTML ruby syntax.",
   "main": "gem.furigana.js",
   "scripts": {
-    "test": "../../Gem.Tests.Unit/furiganaTests.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -13,15 +13,18 @@
   "keywords": [
     "japanese",
     "furigana",
-	"unicode",
-	"kanji",
-	"hiragana",
-	"language"
+    "unicode",
+    "kanji",
+    "hiragana",
+    "language"
   ],
   "author": "Helen Emerson",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/helephant/Gem/issues"
   },
-  "homepage": "https://github.com/helephant/Gem#readme"
+  "homepage": "https://github.com/helephant/Gem#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }

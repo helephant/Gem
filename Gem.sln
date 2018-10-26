@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C68B2199
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{226CED8F-050A-460F-91D7-9DEDC8F08DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gem", "src\Gem\Gem.csproj", "{BE007FD9-7B35-4830-9A8E-37B25FB5420A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gem", "src\Gem\Gem.csproj", "{BE007FD9-7B35-4830-9A8E-37B25FB5420A}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Gem.Javascript", "src\Gem.Javascript\Gem.Javascript.njsproj", "{4D83C2BA-E2A1-4AB9-9CE7-B83DD56D091F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{BE007FD9-7B35-4830-9A8E-37B25FB5420A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE007FD9-7B35-4830-9A8E-37B25FB5420A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE007FD9-7B35-4830-9A8E-37B25FB5420A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D83C2BA-E2A1-4AB9-9CE7-B83DD56D091F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D83C2BA-E2A1-4AB9-9CE7-B83DD56D091F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D83C2BA-E2A1-4AB9-9CE7-B83DD56D091F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D83C2BA-E2A1-4AB9-9CE7-B83DD56D091F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

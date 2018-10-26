@@ -1,6 +1,6 @@
 ﻿# Gem
 
-Gem is little .NET library for working with Japanese furigana.
+Gem is little .NET and javascript library for working with Japanese furigana.
 
 Japanese writing is made up of two phonetic scripts: hiragana for Japanese words and katakana for loan words. There is also a logographic script called kanji, where a single character represents an idea or a word. All three of these scripts are used in Japanese text.
 
@@ -35,25 +35,26 @@ For example:
  Will create text that looks like this:
 
 ![](https://github.com/helephant/Gem/blob/master/docs/anohito-example.png)
- 
-## Using the library
 
-Gem is a [nuget package](https://www.nuget.org/packages/Gem/), so you can install it into your project using the following command:
-```
-Install-Package Gem
-```
-
-Then you can create furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
-```
-var furigana = new Furigana("新[あたら]しい");
-```
-
-Then it's possible to generate:
+Once you have created a furigana object, it is possible to extract:
 * The reading - the Japanese text, with any gem information included in the Gem syntax (ie. 新[あたら]しい)
 * The expression - the Japanese text without any furigana gems (ie. 新しい)
 * Hiragana - the text with any Kanji converted to the phonetic hiragana (ie. あたらしい)
 * Ruby Html - HTML syntax required to display the expression with the hiragana gems in the browser (ie. <ruby><rb>新</rb><rt>あたら</rt></ruby>しい)
 
+## Using the .NET library
+
+Gem has a [nuget package](https://www.nuget.org/packages/Gem/) for .NET, so you can install it into your project using the following command:
+```
+Install-Package Gem
+```
+
+Then you can create .NET furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
+```
+var furigana = new Furigana("新[あたら]しい");
+```
+
+Then you can generate the reading, expression, hiragana or ruby HTML.
 ```
 var furigana = new Furigana("新[あたら]しい");
 
@@ -63,5 +64,23 @@ Debug.WriteLine(furigana.Hiragana);
 Debug.WriteLine(furigana.ReadingHtml);
 ```
 
+## Using the javascript library
 
+Gem also has an [npm package](https://www.npmjs.com/package/gem-furigana), so you can install it into your project using the following command:
+```
+npm install gem-furigana
+```
 
+Then you can create Javascript furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
+```
+const Furigana = require("gem-furigana");
+var furigana = new Furigana("新[あたら]しい");
+```
+
+Then you can generate the reading, expression, hiragana or ruby HTML.
+```
+console.log(furigana.Reading);
+console.log(furigana.Expression);
+console.log(furigana.Hiragana);
+console.log(furigana.ReadingHtml);
+```

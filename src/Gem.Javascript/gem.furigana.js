@@ -1,4 +1,4 @@
-﻿function Furigana(reading) {
+﻿module.exports = function Furigana(reading) {
     var segments = ParseFurigana(reading || "");
 
     this.Reading = getReading();

@@ -51,9 +51,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="furiganaTests.js" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Gem\Gem.csproj">
       <Project>{be007fd9-7b35-4830-9a8e-37b25fb5420a}</Project>
       <Name>Gem</Name>
