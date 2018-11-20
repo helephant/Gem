@@ -1,6 +1,6 @@
 {
   "name": "gem-furigana",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Gem makes it simple to work with Japanese furigana on webpages. It uses a simple syntax to encode furigana information in Japanese text, which it can display as plain kanji, hiragana or furigana using the HTML ruby syntax.",
   "main": "gem.furigana.js",
   "scripts": {

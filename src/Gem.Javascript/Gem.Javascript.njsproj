@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="gem.furigana.test.js" />
     <Compile Include="gem.furigana.js" />
+    <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
