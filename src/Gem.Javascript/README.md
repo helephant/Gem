@@ -27,7 +27,7 @@ npm install gem-furigana
 
 Then you can create furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
 ```
-const Furigana = require("gem-furigana");
+const Furigana = require("gem-furigana").Furigana;
 var furigana = new Furigana("新[あたら]しい");
 ```
 
@@ -38,7 +38,7 @@ Then it's possible to generate:
 * Ruby Html - HTML syntax required to display the expression with the hiragana gems in the browser (ie. <ruby><rb>新</rb><rt>あたら</rt></ruby>しい)
 
 ```
-const Furigana = require("gem-furigana");
+const Furigana = require("gem-furigana").Furigana;
 var furigana = new Furigana("新[あたら]しい");
 
 console.log(furigana.Reading);		// 新[あたら]しい

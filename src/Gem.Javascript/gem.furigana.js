@@ -1,4 +1,4 @@
-﻿function Furigana(reading) {
+﻿export function Furigana(reading) {
     var segments = ParseFurigana(reading || "");
 
     this.Reading = getReading();
@@ -109,10 +109,3 @@ function ParseFurigana(reading) {
 
     return segments;
 }
-
-if (typeof module !== 'undefined' && module.exports)
-    module.exports = Furigana;
-if (typeof define === 'function' && define.amd)
-    define(function() { return Furigana; });
-else
-    global.Furigana = Furigana;

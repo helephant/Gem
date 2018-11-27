@@ -1,4 +1,4 @@
-﻿const Furigana = require("./gem.furigana");
+﻿const Furigana = require("./dist/gem.furigana").Furigana;
 
 test("single gem that spans the entire word", () => {
     var reading = "動物[どうぶつ]";
