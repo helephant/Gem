@@ -33,10 +33,6 @@
     <Compile Include="dist\gem.furigana.js" />
     <Compile Include="gem.furigana.test.js" />
     <Compile Include="gem.furigana.js" />
-    <Compile Include="webpack.config.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Content Include=".babelrc" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />

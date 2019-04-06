@@ -25,9 +25,16 @@ Gem is an [npm package](https://www.npmjs.com/package/gem-furigana), so you can 
 npm install gem-furigana
 ```
 
-Then you can create furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
+Then you can create furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. The Gem library supports UMD syntax. 
 ```
-const Furigana = require("gem-furigana").Furigana;
+//const Furigana = require("gem-furigana").Furigana;
+import { Furigana } from "gem-furigana";
+var furigana = new Furigana("新[あたら]しい");
+```
+
+ES6 imports are also supported. 
+```
+import { Furigana } from "gem-furigana";
 var furigana = new Furigana("新[あたら]しい");
 ```
 
