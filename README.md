@@ -77,6 +77,12 @@ const Furigana = require("gem-furigana");
 var furigana = new Furigana("新[あたら]しい");
 ```
 
+ES6 installs are also supported. 
+```
+import { Furigana } from "gem-furigana";
+var furigana = new Furigana("新[あたら]しい");
+```
+
 Then you can generate the reading, expression, hiragana or ruby HTML.
 ```
 console.log(furigana.Reading);
