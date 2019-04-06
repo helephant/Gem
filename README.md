@@ -77,7 +77,7 @@ const Furigana = require("gem-furigana").Furigana;
 var furigana = new Furigana("新[あたら]しい");
 ```
 
-ES6 installs are also supported. 
+ES6 imports are also supported. 
 ```
 import { Furigana } from "gem-furigana";
 var furigana = new Furigana("新[あたら]しい");
