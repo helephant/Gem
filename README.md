@@ -73,7 +73,13 @@ npm install gem-furigana
 
 Then you can create Javascript furigana objects. Pass in the Japanese text with the extra furigana information encoded in Gem syntax. 
 ```
-const Furigana = require("gem-furigana");
+const Furigana = require("gem-furigana").Furigana;
+var furigana = new Furigana("新[あたら]しい");
+```
+
+ES6 imports are also supported. 
+```
+import { Furigana } from "gem-furigana";
 var furigana = new Furigana("新[あたら]しい");
 ```
 
