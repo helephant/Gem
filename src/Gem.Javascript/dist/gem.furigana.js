@@ -59,7 +59,7 @@
       for (var x = 0; x < segments.length; x++) {
         html += segments[x].ReadingHtml;
       }
-        
+
       return html;
     }
   }
